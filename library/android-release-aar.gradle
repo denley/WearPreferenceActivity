@@ -1,9 +1,9 @@
 // ./gradlew clean build generateRelease
 apply plugin: 'maven'
 
-def groupId = project.PUBLISH_GROUP_ID
-def artifactId = project.PUBLISH_ARTIFACT_ID
-def version = project.PUBLISH_VERSION
+def groupId = project.GROUP_ID
+def artifactId = project.ARTIFACT_ID
+def version = project.VERSION_NAME
 
 def localReleaseDest = "${buildDir}/release/${version}"
 
@@ -29,14 +29,6 @@ uploadArchives {
         pom.version = version
         // Add other pom properties here if you want (developer details / licenses)
         repository(url: "file://${localReleaseDest}")
-        // workaround for: https://code.google.com/p/android/issues/detail?id=72807
-        pom.whenConfigured { pom ->
-            pom.dependencies.findAll { dependency ->
-                if (dependency.artifactId == 'appcompat-v7') {
-                    dependency.type = 'aar'
-                }
-            }
-        }
     }
 }
 

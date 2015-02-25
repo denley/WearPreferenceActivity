@@ -8,6 +8,7 @@ public class MainActivity extends WearPreferenceActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         addPreferencesFromResource(R.layout.preferences);
     }
 
