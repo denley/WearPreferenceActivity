@@ -3,6 +3,7 @@ package preference;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -44,22 +45,44 @@ public abstract class Preference extends View {
         throw new IllegalStateException("Preferences should not be attached to a UI. They are for use with WearPrefrenceActivity only.");
     }
 
-    public String getKey(){
+    /**
+     * Returns the key for this preference.
+     */
+    @NonNull public String getKey(){
         return key;
     }
 
+    /**
+     * Returns a resource ID for the icon to display with this preference.
+     * Subclasses may override this to display an icon based on the value of the preference.
+     */
     @DrawableRes public int getIcon() {
         return icon;
     }
 
+    /**
+     * Returns the title text to display to the user for this preference.
+     *
+     * By default, this will return the string defined in the xml attribute for
+     * this preference (app:title).
+     *
+     * Subclasses will typically not override this method but may do so in some cases.
+     */
     public CharSequence getTitle() {
         return title;
     }
 
+    /**
+     * Returns the summary text to display to the user.
+     * Subclasses may override this to display the preference value to the user.
+     */
     public CharSequence getSummary() {
         return summary;
     }
 
+    /**
+     * Called when the preference item is clicked by the user.
+     */
     public abstract void onPreferenceClick();
 
 }

@@ -29,6 +29,10 @@ public abstract class WearPreferenceActivity extends Activity implements Wearabl
         list = (WearableListView) findViewById(android.R.id.list);
     }
 
+    /**
+     * Inflates the preferences from the given resource and displays them on this page.
+     * @param prefsResId    The resource ID of the preferences xml file.
+     */
     protected void addPreferencesFromResource(@LayoutRes int prefsResId) {
         final View prefsRoot = inflater.inflate(prefsResId, null);
 
