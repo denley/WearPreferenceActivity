@@ -6,7 +6,7 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "me.denley.wearpreferenceactivity.sample"
+        applicationId project.GROUP_ID + '.sample'
         minSdkVersion 20
         targetSdkVersion 21
         versionCode project.VERSION_CODE
@@ -22,4 +22,7 @@ android {
 
 dependencies {
     compile project(':library')
+
+    // Use this instead to test the release to jcenter
+    //compile group: project.GROUP_ID, name: project.ARTIFACT_ID, version: project.VERSION_NAME
 }
