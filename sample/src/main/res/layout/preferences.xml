@@ -6,35 +6,35 @@
     android:layout_height="match_parent"
     >
 
-    <preference.Preference
-        app:key="a_pref_key"
-        app:title="Title0"
-        app:summary="Summary0"
+    <preference.BooleanPreference
+        app:key="use_location"
+        app:title="Location"
+        app:iconOn="@drawable/ic_location_on_white_24dp"
+        app:iconOff="@drawable/ic_location_off_white_24dp"
+        app:summaryOn="@string/location_summary_on"
+        app:summaryOff="@string/location_summary_off"
         app:icon="@drawable/ic_launcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <preference.Preference
-        app:key="a_pref_ke"
-        app:title="Title1"
-        app:summary="Summary1"
-        app:icon="@drawable/ic_launcher"
+    <preference.BooleanPreference
+        app:key="backup_data"
+        app:title="Data Backup"
+        app:iconOn="@drawable/ic_cloud_queue_white_24dp"
+        app:iconOff="@drawable/ic_cloud_off_white_24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <preference.Preference
-        app:key="a_pref_k"
-        app:title="Title2"
-        app:summary="Summary2"
-        app:icon="@drawable/ic_launcher"
+        app:key="language"
+        app:title="Language"
+        app:icon="@drawable/ic_language_white_24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <preference.Preference
-        app:key="a_pref_"
-        app:title="Title3"
-        app:summary="Summary3"
-        app:icon="@drawable/ic_launcher"
+    <preference.BooleanPreference
+        app:key="full_screen"
+        app:title="Full Screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

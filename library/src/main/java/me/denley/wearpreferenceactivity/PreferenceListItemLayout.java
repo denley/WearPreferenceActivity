@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package preference;
+package me.denley.wearpreferenceactivity;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
-import android.support.annotation.LayoutRes;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.wearable.view.CircledImageView;
@@ -32,9 +32,10 @@ import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-@SuppressLint("ViewConstructor")
+import preference.Preference;
+
 @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
-public class PreferenceListItemLayout extends LinearLayout implements WearableListView.OnCenterProximityListener {
+public class PreferenceListItemLayout extends LinearLayout implements WearableListView.OnCenterProximityListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final float ALPHA_NON_CENTER = 0.6f;
 
@@ -43,6 +44,10 @@ public class PreferenceListItemLayout extends LinearLayout implements WearableLi
 
     private static final long ANIMATION_DURATION = 100;
 
+
+    private final SharedPreferences preferences;
+
+    @Nullable private Preference bindedPreference = null;
 
     @Nullable private final CircledImageView icon;
     @Nullable private final TextView title, summary;
@@ -70,9 +75,11 @@ public class PreferenceListItemLayout extends LinearLayout implements WearableLi
         }
     };
 
-    public PreferenceListItemLayout(Context context, @LayoutRes int layout) {
+    public PreferenceListItemLayout(Context context) {
         super(context);
-        LayoutInflater.from(context).inflate(layout, this);
+        preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+
+        LayoutInflater.from(context).inflate(R.layout.wearprefs_preference_item, this);
         icon = (CircledImageView) findViewById(android.R.id.icon);
         title = (TextView) findViewById(android.R.id.title);
         summary = (TextView) findViewById(android.R.id.summary);
@@ -88,8 +95,19 @@ public class PreferenceListItemLayout extends LinearLayout implements WearableLi
         circleShrinkAnimation.setDuration(ANIMATION_DURATION);
     }
 
-    public void bindPreference(Preference preference){
-        if(icon !=null && preference.getIcon()!=0) {
+    public void bindPreference(final Preference preference){
+        bindedPreference = preference;
+        bindPreferenceView(preference);
+        preferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    public void releaseBinding(){
+        preferences.unregisterOnSharedPreferenceChangeListener(this);
+        bindedPreference = null;
+    }
+
+    private void bindPreferenceView(final Preference preference){
+        if(icon !=null) {
             icon.setImageResource(preference.getIcon());
         }
         if(title!=null) {
@@ -103,6 +121,12 @@ public class PreferenceListItemLayout extends LinearLayout implements WearableLi
                 summary.setText(summaryText);
                 summary.setVisibility(View.VISIBLE);
             }
+        }
+    }
+
+    @Override public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, @NonNull String key) {
+        if(bindedPreference!=null && key.equals(bindedPreference.getKey())){
+            bindPreferenceView(bindedPreference);
         }
     }
 

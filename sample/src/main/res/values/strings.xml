@@ -1,3 +1,8 @@
 <resources>
+
     <string name="app_name">WearPreferenceActivity Sample</string>
+
+    <string name="location_summary_on">Show</string>
+    <string name="location_summary_off">Hide</string>
+
 </resources>

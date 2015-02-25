@@ -11,7 +11,7 @@
     <android.support.wearable.view.CircledImageView
         android:id="@android:id/icon"
         android:layout_height="72dp"
-        android:padding="22dp"
+        android:padding="24dp"
         android:layout_width="72dp"
         app:circle_color="@android:color/transparent"
         app:circle_radius="16dp"
@@ -25,8 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         >
 
         <TextView

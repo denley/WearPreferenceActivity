@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import preference.Preference;
-import preference.PreferenceListItemLayout;
 import preference.PreferenceScreen;
 
 public abstract class WearPreferenceActivity extends Activity implements WearableListView.ClickListener {
@@ -65,8 +64,7 @@ public abstract class WearPreferenceActivity extends Activity implements Wearabl
 
     @Override public void onClick(WearableListView.ViewHolder viewHolder) {
         final Preference clickedPreference = preferences.get(viewHolder.getPosition());
-
-        // TODO perform action (depends on preference type)
+        clickedPreference.onPreferenceClick();
     }
 
     @Override public void onTopEmptyRegionClick() {}
@@ -74,7 +72,7 @@ public abstract class WearPreferenceActivity extends Activity implements Wearabl
 
     private class SettingsAdapter extends WearableListView.Adapter {
         @Override public WearableListView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            final PreferenceListItemLayout itemView = new PreferenceListItemLayout(WearPreferenceActivity.this, viewType);
+            final PreferenceListItemLayout itemView = new PreferenceListItemLayout(WearPreferenceActivity.this);
             return new WearableListView.ViewHolder(itemView);
         }
 
@@ -90,7 +88,12 @@ public abstract class WearPreferenceActivity extends Activity implements Wearabl
         }
 
         @Override public int getItemViewType(int position) {
-            return preferences.get(position).getLayout();
+            return 0;
+        }
+
+        @Override public void onViewRecycled(WearableListView.ViewHolder holder) {
+            final PreferenceListItemLayout itemView = (PreferenceListItemLayout)holder.itemView;
+            itemView.releaseBinding();
         }
     }
 
