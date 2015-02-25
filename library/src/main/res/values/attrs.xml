@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Preference">
+        <attr name="key" format="string" />
+        <attr name="icon" format="reference" />
+        <attr name="title" format="string" />
+        <attr name="summary" format="string" />
+        <attr name="defaultValue" />
+    </declare-styleable>
+
+    <declare-styleable name="ListPreference">
+        <attr name="defaultValue" format="integer" />
+        <attr name="entries" format="reference" />
+        <attr name="entryValues" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BooleanPreference">
+        <attr name="iconOn" format="reference" />
+        <attr name="iconOff" format="reference" />
+        <attr name="summaryOn" format="string" />
+        <attr name="summaryOff" format="string" />
+    </declare-styleable>
+
+</resources>

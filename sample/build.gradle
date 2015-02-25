@@ -1,0 +1,25 @@
+apply plugin: 'com.android.application'
+
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "me.denley.wearpreferenceactivity.sample"
+        minSdkVersion 20
+        targetSdkVersion 21
+        versionCode project.VERSION_CODE
+        versionName project.VERSION_NAME
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile project(':library')
+}
