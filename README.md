@@ -1,6 +1,8 @@
 # WearPreferenceActivity
 A preferences framework for Android Wear apps. Equivalent to Android's `PreferenceActivity`, but for Android Wear.
 
+![Preference List](/screenshots/preference_list.png) ![Preference List](/screenshots/language_select.png)
+
 Basic Use
 -------
 `WearPreferenceActivity` works much the same way as Android's `PreferenceActivity` framework.
