@@ -1,8 +1,22 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name">WearPreferenceActivity Sample</string>
 
     <string name="location_summary_on">Show</string>
     <string name="location_summary_off">Hide</string>
+
+    <string-array name="entries_language" tools:translatable="false">
+        <item>English</item>
+        <item>Español</item>
+        <item>Français</item>
+        <item>Deutsch</item>
+    </string-array>
+
+    <string-array name="values_language" tools:translatable="false">
+        <item>en</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>de</item>
+    </string-array>
 
 </resources>

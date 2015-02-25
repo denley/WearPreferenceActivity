@@ -2,7 +2,7 @@ package me.denley.wearpreferenceactivity.sample;
 
 import android.os.Bundle;
 
-import me.denley.wearpreferenceactivity.WearPreferenceActivity;
+import preference.WearPreferenceActivity;
 
 public class MainActivity extends WearPreferenceActivity {
 

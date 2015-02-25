@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.denley.wearpreferenceactivity;
+package preference;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -32,7 +32,7 @@ import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import preference.Preference;
+import me.denley.wearpreferenceactivity.R;
 
 @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
 public class PreferenceListItemLayout extends LinearLayout implements WearableListView.OnCenterProximityListener, SharedPreferences.OnSharedPreferenceChangeListener {
@@ -79,7 +79,7 @@ public class PreferenceListItemLayout extends LinearLayout implements WearableLi
         super(context);
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
-        LayoutInflater.from(context).inflate(R.layout.wearprefs_preference_item, this);
+        LayoutInflater.from(context).inflate(R.layout.preference_item, this);
         icon = (CircledImageView) findViewById(android.R.id.icon);
         title = (TextView) findViewById(android.R.id.title);
         summary = (TextView) findViewById(android.R.id.summary);
@@ -107,14 +107,17 @@ public class PreferenceListItemLayout extends LinearLayout implements WearableLi
     }
 
     private void bindPreferenceView(final Preference preference){
+        bindView(preference.getIcon(), preference.getTitle(), preference.getSummary());
+    }
+
+    public void bindView(final int iconId, final CharSequence titleText, final CharSequence summaryText) {
         if(icon !=null) {
-            icon.setImageResource(preference.getIcon());
+            icon.setImageResource(iconId);
         }
         if(title!=null) {
-            title.setText(preference.getTitle());
+            title.setText(titleText);
         }
         if(summary!=null) {
-            final String summaryText = preference.getSummary();
             if(summaryText==null) {
                 summary.setVisibility(View.GONE);
             } else {

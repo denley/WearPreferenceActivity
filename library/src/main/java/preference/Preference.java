@@ -8,7 +8,7 @@ import android.view.View;
 
 import me.denley.wearpreferenceactivity.R;
 
-public class Preference extends View {
+public abstract class Preference extends View {
 
     protected final String key;
     @DrawableRes protected final int icon;
@@ -52,16 +52,14 @@ public class Preference extends View {
         return icon;
     }
 
-    public String getTitle() {
+    public CharSequence getTitle() {
         return title;
     }
 
-    public String getSummary() {
+    public CharSequence getSummary() {
         return summary;
     }
 
-    public void onPreferenceClick() {
-        // Default implementation does nothing. This is a stub for overriding.
-    }
+    public abstract void onPreferenceClick();
 
 }

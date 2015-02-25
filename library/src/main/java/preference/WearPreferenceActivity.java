@@ -1,4 +1,4 @@
-package me.denley.wearpreferenceactivity;
+package preference;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import preference.Preference;
-import preference.PreferenceScreen;
+import me.denley.wearpreferenceactivity.R;
 
 public abstract class WearPreferenceActivity extends Activity implements WearableListView.ClickListener {
 
@@ -26,7 +25,7 @@ public abstract class WearPreferenceActivity extends Activity implements Wearabl
         super.onCreate(savedInstanceState);
         inflater = LayoutInflater.from(this);
 
-        setContentView(R.layout.wearprefs_activity_preferences);
+        setContentView(R.layout.preference_list);
         list = (WearableListView) findViewById(android.R.id.list);
     }
 
@@ -85,10 +84,6 @@ public abstract class WearPreferenceActivity extends Activity implements Wearabl
 
         @Override public int getItemCount() {
             return preferences.size();
-        }
-
-        @Override public int getItemViewType(int position) {
-            return 0;
         }
 
         @Override public void onViewRecycled(WearableListView.ViewHolder holder) {

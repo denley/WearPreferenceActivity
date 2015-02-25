@@ -13,6 +13,7 @@
         app:iconOff="@drawable/ic_location_off_white_24dp"
         app:summaryOn="@string/location_summary_on"
         app:summaryOff="@string/location_summary_off"
+        app:defaultValue="true"
         app:icon="@drawable/ic_launcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -22,13 +23,17 @@
         app:title="Data Backup"
         app:iconOn="@drawable/ic_cloud_queue_white_24dp"
         app:iconOff="@drawable/ic_cloud_off_white_24dp"
+        app:defaultValue="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <preference.Preference
+    <preference.ListPreference
         app:key="language"
         app:title="Language"
         app:icon="@drawable/ic_language_white_24dp"
+        app:entries="@array/entries_language"
+        app:entryValues="@array/values_language"
+        app:defaultValue="en"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

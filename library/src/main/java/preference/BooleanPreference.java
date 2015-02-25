@@ -53,7 +53,7 @@ public class BooleanPreference extends Preference {
         }
     }
 
-    @Override public String getSummary() {
+    @Override public CharSequence getSummary() {
         if(getPreferenceValue()){
             return summaryOn;
         } else {
