@@ -75,13 +75,13 @@ public abstract class WearPreferenceActivity extends Activity implements Wearabl
 
     private class SettingsAdapter extends WearableListView.Adapter {
         @Override public WearableListView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            final PreferenceListItemLayout itemView = new PreferenceListItemLayout(WearPreferenceActivity.this);
+            final ListItemLayout itemView = new ListItemLayout(WearPreferenceActivity.this, R.layout.preference_item);
             return new WearableListView.ViewHolder(itemView);
         }
 
         @Override public void onBindViewHolder(WearableListView.ViewHolder holder, int position) {
             final Preference preference = preferences.get(position);
-            final PreferenceListItemLayout itemView = (PreferenceListItemLayout)holder.itemView;
+            final ListItemLayout itemView = (ListItemLayout)holder.itemView;
             itemView.bindPreference(preference);
             itemView.onNonCenterPosition(false);
         }
@@ -91,7 +91,7 @@ public abstract class WearPreferenceActivity extends Activity implements Wearabl
         }
 
         @Override public void onViewRecycled(WearableListView.ViewHolder holder) {
-            final PreferenceListItemLayout itemView = (PreferenceListItemLayout)holder.itemView;
+            final ListItemLayout itemView = (ListItemLayout)holder.itemView;
             itemView.releaseBinding();
         }
     }

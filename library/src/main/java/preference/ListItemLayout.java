@@ -21,21 +21,18 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.wearable.view.CircledImageView;
 import android.support.wearable.view.WearableListView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import me.denley.wearpreferenceactivity.R;
-
 @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
-public class PreferenceListItemLayout extends LinearLayout implements WearableListView.OnCenterProximityListener, SharedPreferences.OnSharedPreferenceChangeListener {
+public class ListItemLayout extends LinearLayout implements WearableListView.OnCenterProximityListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final float ALPHA_NON_CENTER = 0.6f;
 
@@ -53,33 +50,15 @@ public class PreferenceListItemLayout extends LinearLayout implements WearableLi
     @Nullable private final TextView title, summary;
 
     private final float circleRadiusCenter, circleRadiusNonCenter;
-    private float animationStartRadius;
 
-    final Animation circleGrowAnimation = new Animation(){
-        @Override protected void applyTransformation(float interpolatedTime, @NonNull Transformation t) {
-            assert icon != null;
+    private CircleSizeAnimation circleGrowAnimation = null;
+    private CircleSizeAnimation circleShrinkAnimation = null;
 
-            float radius = interpolatedTime*circleRadiusCenter
-                    + (1-interpolatedTime)*animationStartRadius;
-            icon.setCircleRadius(radius);
-        }
-    };
-
-    final Animation circleShrinkAnimation = new Animation(){
-        @Override protected void applyTransformation(float interpolatedTime, @NonNull Transformation t) {
-            assert icon != null;
-
-            float radius = interpolatedTime*circleRadiusNonCenter
-                    + (1-interpolatedTime)*animationStartRadius;
-            icon.setCircleRadius(radius);
-        }
-    };
-
-    public PreferenceListItemLayout(Context context) {
+    public ListItemLayout(@NonNull Context context, @LayoutRes int layout) {
         super(context);
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
-        LayoutInflater.from(context).inflate(R.layout.preference_item, this);
+        LayoutInflater.from(context).inflate(layout, this);
         icon = (CircledImageView) findViewById(android.R.id.icon);
         title = (TextView) findViewById(android.R.id.title);
         summary = (TextView) findViewById(android.R.id.summary);
@@ -89,6 +68,8 @@ public class PreferenceListItemLayout extends LinearLayout implements WearableLi
         circleRadiusNonCenter = CIRCLE_RADIUS_NON_CENTER_DP * density;
         if(icon!=null) {
             icon.setCircleRadiusPressed(circleRadiusCenter);
+            circleGrowAnimation = new CircleSizeAnimation(icon, circleRadiusCenter);
+            circleShrinkAnimation = new CircleSizeAnimation(icon, circleRadiusNonCenter);
         }
 
         circleGrowAnimation.setDuration(ANIMATION_DURATION);
@@ -138,11 +119,7 @@ public class PreferenceListItemLayout extends LinearLayout implements WearableLi
             icon.setAlpha(1);
 
             if (animate) {
-                if (icon.getAnimation() != circleGrowAnimation) {
-                    icon.clearAnimation();
-                    animationStartRadius = icon.getCircleRadius();
-                    icon.startAnimation(circleGrowAnimation);
-                }
+                circleGrowAnimation.animate();
             } else {
                 icon.setCircleRadius(circleRadiusCenter);
             }
@@ -161,11 +138,7 @@ public class PreferenceListItemLayout extends LinearLayout implements WearableLi
             icon.setAlpha(ALPHA_NON_CENTER);
 
             if (animate) {
-                if (icon.getAnimation() != circleShrinkAnimation) {
-                    icon.clearAnimation();
-                    animationStartRadius = icon.getCircleRadius();
-                    icon.startAnimation(circleShrinkAnimation);
-                }
+                circleShrinkAnimation.animate();
             } else {
                 icon.setCircleRadius(circleRadiusNonCenter);
             }

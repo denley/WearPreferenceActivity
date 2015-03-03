@@ -86,12 +86,12 @@ public class ListChooserActivity extends Activity implements WearableListView.Cl
 
         @Override
         public WearableListView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            final PreferenceListItemLayout itemView = new PreferenceListItemLayout(ListChooserActivity.this);
+            final ListItemLayout itemView = new ListItemLayout(ListChooserActivity.this, R.layout.preference_item);
             return new WearableListView.ViewHolder(itemView);
         }
 
         @Override public void onBindViewHolder(WearableListView.ViewHolder holder, int position) {
-            final PreferenceListItemLayout itemView = (PreferenceListItemLayout)holder.itemView;
+            final ListItemLayout itemView = (ListItemLayout)holder.itemView;
             itemView.bindView(icon, entries[position], null);
             itemView.onNonCenterPosition(false);
         }
