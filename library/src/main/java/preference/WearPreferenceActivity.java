@@ -75,7 +75,7 @@ public abstract class WearPreferenceActivity extends Activity implements Wearabl
 
     private class SettingsAdapter extends WearableListView.Adapter {
         @Override public WearableListView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            final ListItemLayout itemView = new ListItemLayout(WearPreferenceActivity.this, R.layout.preference_item);
+            final ListItemLayout itemView = new ListItemLayout(WearPreferenceActivity.this);
             return new WearableListView.ViewHolder(itemView);
         }
 

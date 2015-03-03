@@ -6,10 +6,10 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
 /**
- * An animation for {@link CircledImageView} that animates its
- * circle radius to a target value.
+ * An animation for android.support.wearable.view.CircledImageView
+ * that animates its circle radius to a target value.
  */
-public class CircleSizeAnimation extends Animation {
+class CircleSizeAnimation extends Animation {
 
     @NonNull private final CircledImageView circledView;
     private final float targetRadius;

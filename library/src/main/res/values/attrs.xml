@@ -22,4 +22,12 @@
         <attr name="summaryOff" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="ListItemLayout">
+        <attr name="icon_circle_color" format="color" />
+        <attr name="icon_circle_border_color" format="dimension" />
+        <attr name="icon_circle_border_width" format="dimension" />
+        <attr name="icon_circle_radius" format="dimension" />
+        <attr name="icon_circle_radius_focused" format="dimension" />
+    </declare-styleable>
+
 </resources>

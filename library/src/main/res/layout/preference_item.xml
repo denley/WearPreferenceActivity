@@ -14,8 +14,6 @@
         android:padding="24dp"
         android:layout_width="72dp"
         app:circle_color="@android:color/transparent"
-        app:circle_radius="16dp"
-        app:circle_radius_pressed="24dp"
         app:circle_border_color="?android:attr/colorForeground"
         app:circle_border_width="1dp"
         />
