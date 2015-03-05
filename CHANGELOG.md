@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.3.1 - 2015-03-06
+### Added
+- Added `pref_icon_circle_color_selected` attribute to `ListItemLayout`
+
 ## 0.3.0 - 2015-03-05
 ### Changed
 - All attribute names now start with `pref_` to avoid conflicting with other libraries

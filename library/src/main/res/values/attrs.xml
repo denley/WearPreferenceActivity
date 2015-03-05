@@ -24,6 +24,7 @@
 
     <declare-styleable name="ListItemLayout">
         <attr name="pref_icon_circle_color" format="color" />
+        <attr name="pref_icon_circle_color_selected" format="color" />
         <attr name="pref_icon_circle_border_color" format="dimension" />
         <attr name="pref_icon_circle_border_width" format="dimension" />
         <attr name="pref_icon_circle_radius" format="dimension" />

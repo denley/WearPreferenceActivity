@@ -112,7 +112,7 @@ public class ListItemLayout extends FrameLayout implements WearableListView.OnCe
                 circleRadiusNonCenter = array.getDimension(R.styleable.ListItemLayout_pref_icon_circle_radius,
                         density * CIRCLE_RADIUS_NON_CENTER_DP);
                 final float borderWidth = array.getDimension(R.styleable.ListItemLayout_pref_icon_circle_border_width, 0);
-                circleColorCenter = array.getColor(R.styleable.ListItemLayout_pref_icon_circle_color, Color.TRANSPARENT);
+                circleColorCenter = array.getColor(R.styleable.ListItemLayout_pref_icon_circle_color_selected, Color.TRANSPARENT);
                 circleColorNonCenter = array.getColor(R.styleable.ListItemLayout_pref_icon_circle_color, Color.TRANSPARENT);
                 final int borderColor = array.getColor(R.styleable.ListItemLayout_pref_icon_circle_border_color, Color.TRANSPARENT);
 
