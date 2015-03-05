@@ -1,8 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 ext {
-    VERSION_NAME = '0.2.0'
-    VERSION_CODE = 2
+    VERSION_NAME = '0.3.0'
+    VERSION_CODE = 3
     GROUP_ID = 'me.denley.wearpreferenceactivity'
     ARTIFACT_ID = 'wearpreferenceactivity'
 }

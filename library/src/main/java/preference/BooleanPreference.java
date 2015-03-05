@@ -21,10 +21,10 @@ public class BooleanPreference extends Preference {
 
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.BooleanPreference, 0, 0);
         try {
-            summaryOn = array.getString(R.styleable.BooleanPreference_summaryOn);
-            summaryOff = array.getString(R.styleable.BooleanPreference_summaryOff);
-            iconOn = array.getResourceId(R.styleable.BooleanPreference_iconOn, 0);
-            iconOff = array.getResourceId(R.styleable.BooleanPreference_iconOff, 0);
+            summaryOn = array.getString(R.styleable.BooleanPreference_pref_summaryOn);
+            summaryOff = array.getString(R.styleable.BooleanPreference_pref_summaryOff);
+            iconOn = array.getResourceId(R.styleable.BooleanPreference_pref_iconOn, 0);
+            iconOff = array.getResourceId(R.styleable.BooleanPreference_pref_iconOff, 0);
         } finally {
             array.recycle();
         }

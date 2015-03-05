@@ -7,39 +7,38 @@
     >
 
     <preference.BooleanPreference
-        app:key="use_location"
-        app:title="Location"
-        app:iconOn="@drawable/ic_location_on_white_24dp"
-        app:iconOff="@drawable/ic_location_off_white_24dp"
-        app:summaryOn="@string/location_summary_on"
-        app:summaryOff="@string/location_summary_off"
-        app:defaultValue="true"
-        app:icon="@drawable/ic_launcher"
+        app:pref_key="use_location"
+        app:pref_title="Location"
+        app:pref_iconOn="@drawable/ic_location_on_white_24dp"
+        app:pref_iconOff="@drawable/ic_location_off_white_24dp"
+        app:pref_summaryOn="@string/location_summary_on"
+        app:pref_summaryOff="@string/location_summary_off"
+        app:pref_defaultValue="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <preference.BooleanPreference
-        app:key="backup_data"
-        app:title="Data Backup"
-        app:iconOn="@drawable/ic_cloud_queue_white_24dp"
-        app:iconOff="@drawable/ic_cloud_off_white_24dp"
-        app:defaultValue="true"
+        app:pref_key="backup_data"
+        app:pref_title="Data Backup"
+        app:pref_iconOn="@drawable/ic_cloud_queue_white_24dp"
+        app:pref_iconOff="@drawable/ic_cloud_off_white_24dp"
+        app:pref_defaultValue="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <preference.ListPreference
-        app:key="language"
-        app:title="Language"
-        app:icon="@drawable/ic_language_white_24dp"
-        app:entries="@array/entries_language"
-        app:entryValues="@array/values_language"
-        app:defaultValue="en"
+        app:pref_key="language"
+        app:pref_title="Language"
+        app:pref_icon="@drawable/ic_language_white_24dp"
+        app:pref_entries="@array/entries_language"
+        app:pref_entryValues="@array/values_language"
+        app:pref_defaultValue="en"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <preference.BooleanPreference
-        app:key="full_screen"
-        app:title="Full Screen"
+        app:pref_key="full_screen"
+        app:pref_title="Full Screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

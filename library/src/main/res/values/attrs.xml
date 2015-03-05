@@ -2,32 +2,32 @@
 <resources>
 
     <declare-styleable name="Preference">
-        <attr name="key" format="string" />
-        <attr name="icon" format="reference" />
-        <attr name="title" format="string" />
-        <attr name="summary" format="string" />
-        <attr name="defaultValue" format="string" />
+        <attr name="pref_key" format="string" />
+        <attr name="pref_icon" format="reference" />
+        <attr name="pref_title" format="string" />
+        <attr name="pref_summary" format="string" />
+        <attr name="pref_defaultValue" format="string" />
     </declare-styleable>
 
     <declare-styleable name="ListPreference">
-        <attr name="entries" format="reference" />
-        <attr name="entryValues" format="reference" />
-        <attr name="entryAsSummary" format="boolean" />
+        <attr name="pref_entries" format="reference" />
+        <attr name="pref_entryValues" format="reference" />
+        <attr name="pref_entryAsSummary" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="BooleanPreference">
-        <attr name="iconOn" format="reference" />
-        <attr name="iconOff" format="reference" />
-        <attr name="summaryOn" format="string" />
-        <attr name="summaryOff" format="string" />
+        <attr name="pref_iconOn" format="reference" />
+        <attr name="pref_iconOff" format="reference" />
+        <attr name="pref_summaryOn" format="string" />
+        <attr name="pref_summaryOff" format="string" />
     </declare-styleable>
 
     <declare-styleable name="ListItemLayout">
-        <attr name="icon_circle_color" format="color" />
-        <attr name="icon_circle_border_color" format="dimension" />
-        <attr name="icon_circle_border_width" format="dimension" />
-        <attr name="icon_circle_radius" format="dimension" />
-        <attr name="icon_circle_radius_focused" format="dimension" />
+        <attr name="pref_icon_circle_color" format="color" />
+        <attr name="pref_icon_circle_border_color" format="dimension" />
+        <attr name="pref_icon_circle_border_width" format="dimension" />
+        <attr name="pref_icon_circle_radius" format="dimension" />
+        <attr name="pref_icon_circle_radius_focused" format="dimension" />
     </declare-styleable>
 
 </resources>

@@ -19,9 +19,9 @@ public class ListPreference extends Preference {
 
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ListPreference, 0, 0);
         try {
-            entries = array.getTextArray(R.styleable.ListPreference_entries);
-            entryValues = array.getTextArray(R.styleable.ListPreference_entryValues);
-            useEntryAsSummary = array.getBoolean(R.styleable.ListPreference_entryAsSummary, true);
+            entries = array.getTextArray(R.styleable.ListPreference_pref_entries);
+            entryValues = array.getTextArray(R.styleable.ListPreference_pref_entryValues);
+            useEntryAsSummary = array.getBoolean(R.styleable.ListPreference_pref_entryAsSummary, true);
             checkRequiredAttributes();
         } finally {
             array.recycle();

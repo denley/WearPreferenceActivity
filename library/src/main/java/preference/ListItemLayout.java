@@ -107,14 +107,14 @@ public class ListItemLayout extends FrameLayout implements WearableListView.OnCe
                         attrs, R.styleable.ListItemLayout,
                         defStyleAttr, defStyleRes);
 
-                circleRadiusCenter = array.getDimension(R.styleable.ListItemLayout_icon_circle_radius_focused,
+                circleRadiusCenter = array.getDimension(R.styleable.ListItemLayout_pref_icon_circle_radius_focused,
                         density * CIRCLE_RADIUS_CENTER_DP);
-                circleRadiusNonCenter = array.getDimension(R.styleable.ListItemLayout_icon_circle_radius,
+                circleRadiusNonCenter = array.getDimension(R.styleable.ListItemLayout_pref_icon_circle_radius,
                         density * CIRCLE_RADIUS_NON_CENTER_DP);
-                final float borderWidth = array.getDimension(R.styleable.ListItemLayout_icon_circle_border_width, 0);
-                circleColorCenter = array.getColor(R.styleable.ListItemLayout_icon_circle_color, Color.TRANSPARENT);
-                circleColorNonCenter = array.getColor(R.styleable.ListItemLayout_icon_circle_color, Color.TRANSPARENT);
-                final int borderColor = array.getColor(R.styleable.ListItemLayout_icon_circle_border_color, Color.TRANSPARENT);
+                final float borderWidth = array.getDimension(R.styleable.ListItemLayout_pref_icon_circle_border_width, 0);
+                circleColorCenter = array.getColor(R.styleable.ListItemLayout_pref_icon_circle_color, Color.TRANSPARENT);
+                circleColorNonCenter = array.getColor(R.styleable.ListItemLayout_pref_icon_circle_color, Color.TRANSPARENT);
+                final int borderColor = array.getColor(R.styleable.ListItemLayout_pref_icon_circle_border_color, Color.TRANSPARENT);
 
                 array.recycle();
 

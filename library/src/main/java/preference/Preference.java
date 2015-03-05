@@ -23,11 +23,11 @@ public abstract class Preference extends View {
 
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.Preference, 0, 0);
         try {
-            key = array.getString(R.styleable.Preference_key);
-            icon = array.getResourceId(R.styleable.Preference_icon, 0);
-            title = array.getString(R.styleable.Preference_title);
-            summary = array.getString(R.styleable.Preference_summary);
-            defaultValue = array.getString(R.styleable.Preference_defaultValue);
+            key = array.getString(R.styleable.Preference_pref_key);
+            icon = array.getResourceId(R.styleable.Preference_pref_icon, 0);
+            title = array.getString(R.styleable.Preference_pref_title);
+            summary = array.getString(R.styleable.Preference_pref_summary);
+            defaultValue = array.getString(R.styleable.Preference_pref_defaultValue);
 
             checkRequiredAttributes();
         } finally {
