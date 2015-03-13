@@ -1,3 +1,5 @@
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-WearPreferenceActivity-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1643)
+
 # WearPreferenceActivity
 A preferences framework for Android Wear apps. Equivalent to Android's `PreferenceActivity`, but for Android Wear.
 
