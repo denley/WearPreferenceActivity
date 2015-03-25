@@ -9,7 +9,7 @@ Basic Use
 -------
 `WearPreferenceActivity` works much the same way as Android's `PreferenceActivity` framework.
 
-Start by defining which preference to display. This is done in a layout xml file, as shown below. This is much like creating a preferences xml file for Android's `PreferenceActivity`, but here we must are create a layout resource file instead (in `/res/layout` not `/res/xml`). This layout is never actually added to the window. It is just being used as a familiar way to define the structure of the preferences page.
+Start by defining which preferences to display. This is done in a layout xml file, as shown below. This is much like creating a preferences xml file for Android's `PreferenceActivity`, but a layout resource file is created instead (in `/res/layout` not `/res/xml`). This layout is never actually added to the window; it is just being used as a familiar way to define the structure of the preferences page.
 ```xml
 <preference.PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
