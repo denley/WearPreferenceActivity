@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Changed
+- Summary text is now smaller than the title text
+
 ## 0.3.1 - 2015-03-06
 ### Added
 - Added `pref_icon_circle_color_selected` attribute to `ListItemLayout`
