@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+### Added
+- Setter methods for `ListItemLayout`, to adjust the circle colours/radii after creation
+
 ### Changed
 - Summary text is now smaller than the title text
 

@@ -134,6 +134,25 @@ public class ListItemLayout extends FrameLayout implements WearableListView.OnCe
         circleShrinkAnimation.setDuration(ANIMATION_DURATION);
     }
 
+    public void setCircleRadiusCenter(float circleRadiusCenter) {
+        this.circleRadiusCenter = circleRadiusCenter;
+        if(icon!=null) {
+            icon.setCircleRadiusPressed(circleRadiusCenter);
+        }
+    }
+
+    public void setCircleRadiusNonCenter(float circleRadiusNonCenter) {
+        this.circleRadiusNonCenter = circleRadiusNonCenter;
+    }
+
+    public void setCircleColorCenter(int circleColorCenter) {
+        this.circleColorCenter = circleColorCenter;
+    }
+
+    public void setCircleColorNonCenter(int circleColorNonCenter) {
+        this.circleColorNonCenter = circleColorNonCenter;
+    }
+
     public void bindPreference(@NonNull final Preference preference){
         bindedPreference = preference;
         bindPreferenceView(preference);
