@@ -78,7 +78,7 @@ Build Configuration
 --------
 Add the following line to the gradle dependencies for your module.
 ```groovy
-compile 'me.denley.wearpreferenceactivity:wearpreferenceactivity:0.3.0'
+compile 'me.denley.wearpreferenceactivity:wearpreferenceactivity:0.4.0'
 ```
 
 Preference Types
