@@ -11,7 +11,6 @@
     <android.support.wearable.view.CircledImageView
         android:id="@android:id/icon"
         android:layout_height="72dp"
-        android:padding="24dp"
         android:layout_width="72dp"
         app:circle_color="@android:color/transparent"
         app:circle_border_color="?android:attr/colorForeground"
