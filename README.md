@@ -52,6 +52,7 @@ Start by creating a preferences xml file (in the `/res/xml/` folder). You may ch
         android:icon="@drawable/ic_language_white_24dp"
         android:entries="@array/entries_language"
         android:entryValues="@array/values_language"
+        app:wear_entryIcons="@array/icons_language"
         android:defaultValue="en"
         />
 
