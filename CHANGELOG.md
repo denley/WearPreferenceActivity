@@ -4,7 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 ### Changed
-- Removed requirement for package prefix in preferences xml files (e.g. `preferenece.BooleanPreference` can now be replaced with `BooleanPreference`)
+- Now parses preference resource files (in `res/xml`), rather than layout resource files (in `res/layout`).
+    - Preferences xml files can now be reused between mobile and wearable apps.
 
 ## 0.4.0 - 2015-03-25
 ### Added

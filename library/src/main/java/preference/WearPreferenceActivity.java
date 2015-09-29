@@ -2,10 +2,10 @@ package preference;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.XmlRes;
 import android.support.wearable.view.WearableListView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -19,10 +19,9 @@ public abstract class WearPreferenceActivity extends Activity implements Wearabl
 
     WearableListView list;
 
-    List<Preference> preferences = new ArrayList<>();
+    List<WearPreference> preferences = new ArrayList<>();
 
     @Override protected void onCreate(Bundle savedInstanceState) {
-        LayoutInflater.from(this).setFactory(new WearPreferenceLayoutInflaterFactory());
         super.onCreate(savedInstanceState);
         inflater = LayoutInflater.from(this);
 
@@ -34,40 +33,32 @@ public abstract class WearPreferenceActivity extends Activity implements Wearabl
      * Inflates the preferences from the given resource and displays them on this page.
      * @param prefsResId    The resource ID of the preferences xml file.
      */
-    protected void addPreferencesFromResource(@LayoutRes int prefsResId) {
-        final View prefsRoot = inflater.inflate(prefsResId, null);
-
-        if(!(prefsRoot instanceof PreferenceScreen)) {
-            throw new IllegalArgumentException("Preferences resource must use preference.PreferenceScreen as its root element");
-        }
-
-        addPreferencesFromPreferenceScreen((PreferenceScreen)prefsRoot);
+    protected void addPreferencesFromResource(@XmlRes int prefsResId) {
+        addPreferencesFromResource(prefsResId, new XmlPreferenceParser());
     }
 
-    private void addPreferencesFromPreferenceScreen(PreferenceScreen preferenceScreen){
-        final List<Preference> loadedPreferences = new ArrayList<>();
-        for(int i=0;i<preferenceScreen.getChildCount();i++) {
-            loadedPreferences.add(parsePreference(preferenceScreen.getChildAt(i)));
-        }
-        addPreferences(loadedPreferences);
+    /**
+     * Inflates the preferences from the given resource and displays them on this page.
+     * @param prefsResId    The resource ID of the preferences xml file.
+     * @param parser        A parser used to parse custom preference types
+     */
+    protected void addPreferencesFromResource(@XmlRes int prefsResId, @NonNull XmlPreferenceParser parser) {
+        final WearPreferenceScreen prefsRoot = parser.parse(this, prefsResId);
+        addPreferencesFromPreferenceScreen(prefsRoot);
     }
 
-    private void addPreferences(List<Preference> newPreferences){
+    private void addPreferencesFromPreferenceScreen(WearPreferenceScreen preferenceScreen){
+        addPreferences(preferenceScreen.getPreferences());
+    }
+
+    private void addPreferences(List<WearPreference> newPreferences){
         preferences = newPreferences;
         list.setAdapter(new SettingsAdapter());
         list.setClickListener(this);
     }
 
-    private Preference parsePreference(View preferenceView) {
-        if(preferenceView instanceof Preference) {
-            return (Preference)preferenceView;
-        }
-
-        throw new IllegalArgumentException("Preferences layout resource may only contain Views extending preference.Preference");
-    }
-
     @Override public void onClick(WearableListView.ViewHolder viewHolder) {
-        final Preference clickedPreference = preferences.get(viewHolder.getPosition());
+        final WearPreference clickedPreference = preferences.get(viewHolder.getPosition());
         clickedPreference.onPreferenceClick();
     }
 
@@ -81,7 +72,7 @@ public abstract class WearPreferenceActivity extends Activity implements Wearabl
         }
 
         @Override public void onBindViewHolder(WearableListView.ViewHolder holder, int position) {
-            final Preference preference = preferences.get(position);
+            final WearPreference preference = preferences.get(position);
             final ListItemLayout itemView = (ListItemLayout)holder.itemView;
             itemView.bindPreference(preference);
             itemView.onNonCenterPosition(false);

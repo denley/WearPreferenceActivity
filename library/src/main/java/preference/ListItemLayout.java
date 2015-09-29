@@ -49,7 +49,7 @@ public class ListItemLayout extends FrameLayout implements WearableListView.OnCe
 
     private SharedPreferences preferences;
 
-    @Nullable private Preference bindedPreference = null;
+    @Nullable private WearPreference bindedPreference = null;
 
     @Nullable private CircledImageView icon;
     @Nullable private TextView title, summary;
@@ -153,7 +153,7 @@ public class ListItemLayout extends FrameLayout implements WearableListView.OnCe
         this.circleColorNonCenter = circleColorNonCenter;
     }
 
-    public void bindPreference(@NonNull final Preference preference){
+    public void bindPreference(@NonNull final WearPreference preference){
         bindedPreference = preference;
         bindPreferenceView(preference);
         preferences.registerOnSharedPreferenceChangeListener(this);
@@ -164,7 +164,7 @@ public class ListItemLayout extends FrameLayout implements WearableListView.OnCe
         bindedPreference = null;
     }
 
-    private void bindPreferenceView(@NonNull final Preference preference){
+    private void bindPreferenceView(@NonNull final WearPreference preference){
         bindView(preference.getIcon(), preference.getTitle(), preference.getSummary());
     }
 

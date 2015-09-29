@@ -9,25 +9,33 @@ import android.util.AttributeSet;
 
 import me.denley.wearpreferenceactivity.R;
 
-public class BooleanPreference extends Preference {
+public class WearTwoStatePreference extends WearPreference {
 
     protected String summaryOn, summaryOff;
     @DrawableRes protected int iconOn, iconOff;
 
     protected boolean defaultValue;
 
-    public BooleanPreference(Context context, AttributeSet attrs) {
+    public WearTwoStatePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.BooleanPreference, 0, 0);
-        try {
-            summaryOn = array.getString(R.styleable.BooleanPreference_pref_summaryOn);
-            summaryOff = array.getString(R.styleable.BooleanPreference_pref_summaryOff);
-            iconOn = array.getResourceId(R.styleable.BooleanPreference_pref_iconOn, 0);
-            iconOff = array.getResourceId(R.styleable.BooleanPreference_pref_iconOff, 0);
-        } finally {
-            array.recycle();
+        summaryOn = loadAndroidStringAttr(attrs, "summaryOn");
+        summaryOff = loadAndroidStringAttr(attrs, "summaryOff");
+
+        TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.TwoStatePreference, 0, 0);
+
+        if(array.hasValue(R.styleable.TwoStatePreference_wear_summaryOn)) {
+            summaryOn = array.getString(R.styleable.TwoStatePreference_wear_summaryOn);
         }
+
+        if(array.hasValue(R.styleable.TwoStatePreference_wear_summaryOff)) {
+            summaryOff = array.getString(R.styleable.TwoStatePreference_wear_summaryOff);
+        }
+
+        iconOn = array.getResourceId(R.styleable.TwoStatePreference_wear_iconOn, 0);
+        iconOff = array.getResourceId(R.styleable.TwoStatePreference_wear_iconOff, 0);
+
+        array.recycle();
 
         defaultValue = Boolean.parseBoolean(super.defaultValue);
 
@@ -62,14 +70,14 @@ public class BooleanPreference extends Preference {
     }
 
     @Override public void onPreferenceClick() {
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         final boolean currentState = preferences.getBoolean(key, defaultValue);
         preferences.edit().putBoolean(key, !currentState).apply();
     }
 
     private boolean getPreferenceValue(){
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getBoolean(key, defaultValue);
     }
 

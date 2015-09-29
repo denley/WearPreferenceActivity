@@ -5,60 +5,61 @@ A preferences framework for Android Wear apps. Equivalent to Android's `Preferen
 
 ![Preference List](/screenshots/preference_list.png) ![Preference List](/screenshots/language_select.png)
 
+Build Configuration
+--------
+Add the following line to the gradle dependencies for your wearable app's module.
+```groovy
+compile 'me.denley.wearpreferenceactivity:wearpreferenceactivity:0.4.0'
+```
+
 Basic Use
 -------
 `WearPreferenceActivity` works much the same way as Android's `PreferenceActivity` framework.
 
-Start by defining which preferences to display. This is done in a layout xml file, as shown below. This is much like creating a preferences xml file for Android's `PreferenceActivity`, but a layout resource file is created instead (in `/res/layout` not `/res/xml`). This layout is never actually added to the window; it is just being used as a familiar way to define the structure of the preferences page.
+Start by creating a preferences xml file (in the `/res/xml/` folder). You may choose to reuse the same file from your mobile app. An example of such a file is below.
+
 ```xml
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingPrefix"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     >
 
-    <BooleanPreference
-        app:pref_key="use_location"
-        app:pref_title="@string/title_location"
-        app:pref_iconOn="@drawable/ic_location_on_white_24dp"
-        app:pref_iconOff="@drawable/ic_location_off_white_24dp"
-        app:pref_summaryOn="@string/location_summary_on"
-        app:pref_summaryOff="@string/location_summary_off"
-        app:pref_defaultValue="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <SwitchPreference
+        android:key="use_location"
+        android:title="@string/title_location"
+        android:summaryOn="@string/location_summary_on"
+        android:summaryOff="@string/location_summary_off"
+        app:wear_iconOn="@drawable/ic_location_on_white_24dp"
+        app:wear_iconOff="@drawable/ic_location_off_white_24dp"
+        android:defaultValue="true"
         />
 
-    <BooleanPreference
-        app:pref_key="backup_data"
-        app:pref_title="@string/title_backup_data"
-        app:pref_iconOn="@drawable/ic_cloud_queue_white_24dp"
-        app:pref_iconOff="@drawable/ic_cloud_off_white_24dp"
-        app:pref_defaultValue="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <SwitchPreference
+        android:key="backup_data"
+        android:title="@string/title_backup_data"
+        android:summaryOn="@string/location_summary_on"
+        android:summaryOff="@string/location_summary_off"
+        app:wear_summaryOn="@string/location_summary_on"
+        app:wear_summaryOff="@string/location_summary_off"
+        app:wear_iconOn="@drawable/ic_cloud_queue_white_24dp"
+        app:wear_iconOff="@drawable/ic_cloud_off_white_24dp"
+        android:defaultValue="true"
         />
 
     <ListPreference
-        app:pref_key="language"
-        app:pref_title="@string/title_language"
-        app:pref_icon="@drawable/ic_language_white_24dp"
-        app:pref_entries="@array/entries_language"
-        app:pref_entryValues="@array/values_language"
-        app:pref_defaultValue="en"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:key="language"
+        android:title="@string/title_language"
+        android:icon="@drawable/ic_language_white_24dp"
+        android:entries="@array/entries_language"
+        android:entryValues="@array/values_language"
+        android:defaultValue="en"
         />
 
-    <BooleanPreference
-        app:pref_key="full_screen"
-        app:pref_title="@string/title_full_screen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <SwitchPreference
+        android:key="full_screen"
+        android:title="@string/title_full_screen"
         />
+
 
 </PreferenceScreen>
 ```
@@ -71,7 +72,7 @@ public class MySettingsActivity extends WearPreferenceActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.layout.preferences);
+        addPreferencesFromResource(R.xml.preferences);
     }
 
 }
@@ -79,19 +80,58 @@ public class MySettingsActivity extends WearPreferenceActivity {
 
 That's it! The preferences page is created. It will load and save the corresponding preference values, and it will automatically listen for external changes to preference values and update the view accordingly.
 
-Build Configuration
---------
-Add the following line to the gradle dependencies for your module.
-```groovy
-compile 'me.denley.wearpreferenceactivity:wearpreferenceactivity:0.4.0'
-```
-
 Preference Types
 --------
 
-This library includes two pre-build preference types: `BooleanPreference` and `ListPreferenece`, which behave in a similar fashion to their Android counterparts (`android.preference.CheckBoxPreference` and `android.preference.ListPreference`).
+This library currently supports `ListPreference`, `SwitchPreference`, and `CheckBoxPreference` out of the box.
 
-Other custom types can be added by extending the `Preference` class, and defining its behaviour in its implementation of the `onPreferenceClick()` method. You may also want to override `getSummary()` to have it show the current value of the preference.
+Other preference types can be created by extending the `WearPreference` class, and defining how it responds to user clicks in its `onPreferenceClick()` method. You may also want to override `getSummary()` to have it show the current value of the preference.
+
+If you create a custom preference type, you need to let the xml parser know how to create it. This can be done in two ways:
+
+#### Option 1 - Use the full class name in the xml file
+
+```xml
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    ...
+
+    <com.example.MyCustomWearPreference
+        android:key="a_pref_key"
+        android:title="@string/a_pref_title"
+        />
+
+
+</PreferenceScreen>
+```
+
+#### Option 2 - Create a Custom Parser
+
+You can specify exactly how you want the preferences to be instantiated from the xml file by creating your own `XmlPreferenceParser`. You could also use this method to give your preference types additional aliases.
+
+```java
+public class MyPreferenceParser extends XmlPreferenceParser {
+
+    protected WearPreference parsePreference(Context context, String preferenceType, final AttributeSet attrs) {
+        if(preferenceType.equals("MyCustomWearPreference") {
+            return new MyCustomWearPreference(context, attrs);
+        } else {
+            return null;
+        }
+    }
+
+}
+```
+
+If you choose this method, you must supply the parser with the xml resource value:
+
+```java
+addPreferencesFromResource(R.xml.preferences, new MyPreferenceParser());
+```
+
 
 If you would like to see any additional preference types included in this library, don't hesitate to submit an issue or a pull request.
 

@@ -9,23 +9,32 @@ import android.util.AttributeSet;
 
 import me.denley.wearpreferenceactivity.R;
 
-public class ListPreference extends Preference {
+public class WearListPreference extends WearPreference {
 
-    protected final CharSequence[] entries, entryValues;
-    protected final boolean useEntryAsSummary;
+    protected CharSequence[] entries, entryValues;
+    protected boolean useEntryAsSummary = true;
 
-    public ListPreference(Context context, AttributeSet attrs) {
+    public WearListPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        final int entriesResId = attrs.getAttributeResourceValue(NAMESPACE_ANDROID, "entries", -1);
+        if(entriesResId != -1) {
+            entries = context.getResources().getStringArray(entriesResId);
+        }
+
+        final int entryValuesResId = attrs.getAttributeResourceValue(NAMESPACE_ANDROID, "entryValues", -1);
+        if(entryValuesResId != -1) {
+            entryValues = context.getResources().getStringArray(entryValuesResId);
+        }
 
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ListPreference, 0, 0);
         try {
-            entries = array.getTextArray(R.styleable.ListPreference_pref_entries);
-            entryValues = array.getTextArray(R.styleable.ListPreference_pref_entryValues);
-            useEntryAsSummary = array.getBoolean(R.styleable.ListPreference_pref_entryAsSummary, true);
-            checkRequiredAttributes();
+            useEntryAsSummary = array.getBoolean(R.styleable.ListPreference_wear_entryAsSummary, true);
         } finally {
             array.recycle();
         }
+
+        checkRequiredAttributes();
     }
 
     private void checkRequiredAttributes(){
@@ -35,7 +44,7 @@ public class ListPreference extends Preference {
     }
 
     private String getCurrentValue(){
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(key, defaultValue);
     }
 
@@ -70,14 +79,14 @@ public class ListPreference extends Preference {
 
     @Override public void onPreferenceClick() {
         final Intent chooseEntryIntent = ListChooserActivity.createIntent(
-                getContext(),
+                context,
                 key,
                 icon,
                 entries,
                 entryValues,
                 getEntryPositionFor(getCurrentValue())
-                );
-        getContext().startActivity(chooseEntryIntent);
+        );
+        context.startActivity(chooseEntryIntent);
     }
 
 }

@@ -2,24 +2,20 @@
 <resources>
 
     <declare-styleable name="Preference">
-        <attr name="pref_key" format="string" />
-        <attr name="pref_icon" format="reference" />
-        <attr name="pref_title" format="string" />
-        <attr name="pref_summary" format="string" />
-        <attr name="pref_defaultValue" format="string" />
+        <attr name="wear_icon" format="reference" />
+        <attr name="wear_title" format="string" />
+        <attr name="wear_summary" format="string" />
     </declare-styleable>
 
     <declare-styleable name="ListPreference">
-        <attr name="pref_entries" format="reference" />
-        <attr name="pref_entryValues" format="reference" />
-        <attr name="pref_entryAsSummary" format="boolean" />
+        <attr name="wear_entryAsSummary" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="BooleanPreference">
-        <attr name="pref_iconOn" format="reference" />
-        <attr name="pref_iconOff" format="reference" />
-        <attr name="pref_summaryOn" format="string" />
-        <attr name="pref_summaryOff" format="string" />
+    <declare-styleable name="TwoStatePreference">
+        <attr name="wear_iconOn" format="reference" />
+        <attr name="wear_iconOff" format="reference" />
+        <attr name="wear_summaryOn" format="string" />
+        <attr name="wear_summaryOff" format="string" />
     </declare-styleable>
 
     <declare-styleable name="ListItemLayout">
