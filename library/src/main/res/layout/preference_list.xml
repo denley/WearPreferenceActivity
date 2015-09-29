@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_background"
     >
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:textSize="24sp"
+        android:alpha="0.6"
         />
 
     <android.support.wearable.view.WearableListView
