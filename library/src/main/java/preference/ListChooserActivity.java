@@ -16,6 +16,7 @@ public class ListChooserActivity extends Activity implements WearableListView.Cl
 
     public static Intent createIntent(Context context, String key, int icon,
                                       CharSequence[] entries, CharSequence[] entryValues,
+                                      int[] entryIcons,
                                       int currentValue){
 
         final Intent launcherIntent = new Intent(context, ListChooserActivity.class);
@@ -23,6 +24,7 @@ public class ListChooserActivity extends Activity implements WearableListView.Cl
         launcherIntent.putExtra(EXTRA_ICON, icon);
         launcherIntent.putExtra(EXTRA_ENTRIES, entries);
         launcherIntent.putExtra(EXTRA_ENTRY_VALUES, entryValues);
+        launcherIntent.putExtra(EXTRA_ENTRY_ICONS, entryIcons);
         launcherIntent.putExtra(EXTRA_CURRENT_VALUE, currentValue);
         return launcherIntent;
     }
@@ -31,6 +33,7 @@ public class ListChooserActivity extends Activity implements WearableListView.Cl
     public static final String EXTRA_ICON = "icon";
     public static final String EXTRA_ENTRIES = "entries";
     public static final String EXTRA_ENTRY_VALUES = "values";
+    public static final String EXTRA_ENTRY_ICONS = "icons";
     public static final String EXTRA_CURRENT_VALUE = "current_value";
 
 
@@ -39,6 +42,7 @@ public class ListChooserActivity extends Activity implements WearableListView.Cl
     @DrawableRes private int icon;
     CharSequence[] entries;
     CharSequence[] values;
+    int[] icons;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +62,7 @@ public class ListChooserActivity extends Activity implements WearableListView.Cl
         icon = getIntent().getIntExtra(EXTRA_ICON, 0);
         entries = getIntent().getCharSequenceArrayExtra(EXTRA_ENTRIES);
         values = getIntent().getCharSequenceArrayExtra(EXTRA_ENTRY_VALUES);
+        icons = getIntent().getIntArrayExtra(EXTRA_ENTRY_ICONS);
     }
 
     private void checkRequiredExtras(){
@@ -92,7 +97,7 @@ public class ListChooserActivity extends Activity implements WearableListView.Cl
 
         @Override public void onBindViewHolder(WearableListView.ViewHolder holder, int position) {
             final ListItemLayout itemView = (ListItemLayout)holder.itemView;
-            itemView.bindView(icon, entries[position], null);
+            itemView.bindView(icons != null ? icons[position] : icon, entries[position], null);
             itemView.onNonCenterPosition(false);
         }
 

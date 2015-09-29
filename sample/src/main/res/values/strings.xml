@@ -24,4 +24,11 @@
         <item>de</item>
     </string-array>
 
+    <array name="icons_language">
+        <item>@drawable/ic_language_en</item>
+        <item>@drawable/ic_language_es</item>
+        <item>@drawable/ic_language_fr</item>
+        <item>@drawable/ic_language_de</item>
+    </array>
+
 </resources>

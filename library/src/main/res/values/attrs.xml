@@ -9,6 +9,7 @@
 
     <declare-styleable name="ListPreference">
         <attr name="wear_entryAsSummary" format="boolean" />
+        <attr name="wear_entryIcons" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="TwoStatePreference">

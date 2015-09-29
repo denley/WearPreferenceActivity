@@ -12,6 +12,7 @@ import me.denley.wearpreferenceactivity.R;
 public class WearListPreference extends WearPreference {
 
     protected CharSequence[] entries, entryValues;
+    protected int[] icons;
     protected boolean useEntryAsSummary = true;
 
     public WearListPreference(Context context, AttributeSet attrs) {
@@ -30,6 +31,16 @@ public class WearListPreference extends WearPreference {
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ListPreference, 0, 0);
         try {
             useEntryAsSummary = array.getBoolean(R.styleable.ListPreference_wear_entryAsSummary, true);
+
+            if(array.hasValue(R.styleable.ListPreference_wear_entryIcons)) {
+                final int resId = array.getResourceId(R.styleable.ListPreference_wear_entryIcons, 0);
+                final TypedArray typed = context.getResources().obtainTypedArray(resId);
+                icons = new int[typed.length()];
+                for(int i = 0; i < typed.length(); i++) {
+                    icons[i] = typed.getResourceId(i, 0);
+                }
+                typed.recycle();
+            }
         } finally {
             array.recycle();
         }
@@ -58,7 +69,7 @@ public class WearListPreference extends WearPreference {
         return -1;
     }
 
-    private CharSequence getCurrentEntry(){
+    private CharSequence getCurrentEntry() {
         final String currentValue = getCurrentValue();
         final int currentValuePos = getEntryPositionFor(currentValue);
 
@@ -77,6 +88,14 @@ public class WearListPreference extends WearPreference {
         }
     }
 
+    @Override public int getIcon() {
+        if(icons != null) {
+            return icons[getEntryPositionFor(getCurrentValue())];
+        } else {
+            return super.getIcon();
+        }
+    }
+
     @Override public void onPreferenceClick() {
         final Intent chooseEntryIntent = ListChooserActivity.createIntent(
                 context,
@@ -84,6 +103,7 @@ public class WearListPreference extends WearPreference {
                 icon,
                 entries,
                 entryValues,
+                icons,
                 getEntryPositionFor(getCurrentValue())
         );
         context.startActivity(chooseEntryIntent);
