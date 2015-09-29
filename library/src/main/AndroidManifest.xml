@@ -1,11 +1,14 @@
 <manifest
     package="me.denley.wearpreferenceactivity"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <application>
         
         <activity
             android:name="preference.ListChooserActivity"
+            android:theme="@android:style/Theme.DeviceDefault"
             />
         
     </application>
+
 </manifest>
