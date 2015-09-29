@@ -1,6 +1,5 @@
 package preference;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,15 +11,16 @@ import android.view.ViewGroup;
 
 import me.denley.wearpreferenceactivity.R;
 
-public class ListChooserActivity extends Activity implements WearableListView.ClickListener {
+public class ListChooserActivity extends TitledWearActivity implements WearableListView.ClickListener {
 
-    public static Intent createIntent(Context context, String key, int icon,
+    public static Intent createIntent(Context context, String key, String title, int icon,
                                       CharSequence[] entries, CharSequence[] entryValues,
                                       int[] entryIcons,
                                       int currentValue){
 
         final Intent launcherIntent = new Intent(context, ListChooserActivity.class);
         launcherIntent.putExtra(EXTRA_PREF_KEY, key);
+        launcherIntent.putExtra(EXTRA_TITLE, title);
         launcherIntent.putExtra(EXTRA_ICON, icon);
         launcherIntent.putExtra(EXTRA_ENTRIES, entries);
         launcherIntent.putExtra(EXTRA_ENTRY_VALUES, entryValues);
@@ -30,6 +30,7 @@ public class ListChooserActivity extends Activity implements WearableListView.Cl
     }
 
     public static final String EXTRA_PREF_KEY = "key";
+    public static final String EXTRA_TITLE = "title";
     public static final String EXTRA_ICON = "icon";
     public static final String EXTRA_ENTRIES = "entries";
     public static final String EXTRA_ENTRY_VALUES = "values";
@@ -59,6 +60,7 @@ public class ListChooserActivity extends Activity implements WearableListView.Cl
 
     private void loadIntentExtras(){
         key = getIntent().getStringExtra(EXTRA_PREF_KEY);
+        setTitle(getIntent().getStringExtra(EXTRA_TITLE));
         icon = getIntent().getIntExtra(EXTRA_ICON, 0);
         entries = getIntent().getCharSequenceArrayExtra(EXTRA_ENTRIES);
         values = getIntent().getCharSequenceArrayExtra(EXTRA_ENTRY_VALUES);

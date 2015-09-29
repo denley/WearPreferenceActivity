@@ -100,6 +100,7 @@ public class WearListPreference extends WearPreference {
         final Intent chooseEntryIntent = ListChooserActivity.createIntent(
                 context,
                 key,
+                title,
                 icon,
                 entries,
                 entryValues,

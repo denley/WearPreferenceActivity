@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.wearable.view.WearableListView
+<preference.HeadingListView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    />
+    >
+
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textSize="24sp"
+        />
+
+    <android.support.wearable.view.WearableListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+</preference.HeadingListView>

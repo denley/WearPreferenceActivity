@@ -1,6 +1,5 @@
 package preference;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.XmlRes;
@@ -13,7 +12,7 @@ import java.util.List;
 
 import me.denley.wearpreferenceactivity.R;
 
-public abstract class WearPreferenceActivity extends Activity implements WearableListView.ClickListener {
+public abstract class WearPreferenceActivity extends TitledWearActivity implements WearableListView.ClickListener {
 
     LayoutInflater inflater;
 
