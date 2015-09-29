@@ -17,6 +17,8 @@ public class HeadingListView extends RelativeLayout implements WearableListView.
     TextView heading;
     WearableListView list;
 
+    boolean hasAdjustedPadding = false;
+
     public HeadingListView(final Context context) {
         super(context);
     }
@@ -36,16 +38,25 @@ public class HeadingListView extends RelativeLayout implements WearableListView.
 
     @Override protected void onFinishInflate() {
         super.onFinishInflate();
-
         heading = (TextView) findViewById(R.id.heading);
         list = (WearableListView) findViewById(android.R.id.list);
-
         list.addOnScrollListener(this);
-
     }
 
     @Override public WindowInsets onApplyWindowInsets(final WindowInsets insets) {
-        heading.setGravity(insets.isRound() ? Gravity.CENTER_HORIZONTAL : Gravity.START);
+        if(insets.isRound()) {
+            heading.setGravity(Gravity.CENTER_HORIZONTAL);
+
+            // Adjust paddings for round devices
+            if(!hasAdjustedPadding) {
+                final int padding = heading.getPaddingTop();
+                heading.setPadding(padding, 2 * padding, padding, padding);
+                list.setPadding(padding, 0, padding, 0);
+                hasAdjustedPadding = true;
+            }
+        } else {
+            heading.setGravity(Gravity.START);
+        }
         return super.onApplyWindowInsets(insets);
     }
 

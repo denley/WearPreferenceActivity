@@ -42,7 +42,7 @@ public class ListItemLayout extends FrameLayout implements WearableListView.OnCe
     private static final float ALPHA_NON_CENTER = 0.6f;
 
     private static final float CIRCLE_RADIUS_CENTER_DP = 24;
-    private static final float CIRCLE_RADIUS_NON_CENTER_DP = 16;
+    private static final float CIRCLE_RADIUS_NON_CENTER_DP = 18;
 
     private static final long ANIMATION_DURATION = 100;
 

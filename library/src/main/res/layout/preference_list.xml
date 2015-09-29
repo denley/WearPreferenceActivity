@@ -10,6 +10,8 @@
         android:id="@+id/heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:ellipsize="end"
         android:padding="16dp"
         android:textSize="24sp"
         android:alpha="0.6"

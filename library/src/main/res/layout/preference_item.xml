@@ -31,12 +31,13 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             />
+
         <TextView
             android:id="@android:id/summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="true"
-            android:textSize="14sp"
+            android:textSize="16sp"
             />
 
     </LinearLayout>
