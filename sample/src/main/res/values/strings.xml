@@ -9,8 +9,8 @@
     <string name="title_language">Language</string>
     <string name="title_full_screen">Full Screen</string>
 
-    <string name="location_summary_on">Show</string>
-    <string name="location_summary_off">Hide</string>
+    <string name="summary_show">Show</string>
+    <string name="summary_hide">Hide</string>
 
     <string-array name="entries_language" tools:translatable="false">
         <item>English</item>
