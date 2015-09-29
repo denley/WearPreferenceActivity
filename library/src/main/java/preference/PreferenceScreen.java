@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 public class PreferenceScreen extends LinearLayout {
 
     public PreferenceScreen(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        super(context);
     }
 
 }

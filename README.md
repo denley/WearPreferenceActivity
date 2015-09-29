@@ -11,51 +11,56 @@ Basic Use
 
 Start by defining which preferences to display. This is done in a layout xml file, as shown below. This is much like creating a preferences xml file for Android's `PreferenceActivity`, but a layout resource file is created instead (in `/res/layout` not `/res/xml`). This layout is never actually added to the window; it is just being used as a familiar way to define the structure of the preferences page.
 ```xml
-<preference.PreferenceScreen
+<PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
-    <preference.BooleanPreference
+    <BooleanPreference
         app:pref_key="use_location"
-        app:pref_title="Location"
-        app:pref_iconOn="@drawable/ic_location_on"
-        app:pref_iconOff="@drawable/ic_location_off"
+        app:pref_title="@string/title_location"
+        app:pref_iconOn="@drawable/ic_location_on_white_24dp"
+        app:pref_iconOff="@drawable/ic_location_off_white_24dp"
         app:pref_summaryOn="@string/location_summary_on"
         app:pref_summaryOff="@string/location_summary_off"
         app:pref_defaultValue="true"
-        app:pref_icon="@drawable/ic_launcher"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        />
 
-    <preference.BooleanPreference
+    <BooleanPreference
         app:pref_key="backup_data"
-        app:pref_title="Data Backup"
+        app:pref_title="@string/title_backup_data"
         app:pref_iconOn="@drawable/ic_cloud_queue_white_24dp"
         app:pref_iconOff="@drawable/ic_cloud_off_white_24dp"
         app:pref_defaultValue="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        />
 
-    <preference.ListPreference
+    <ListPreference
         app:pref_key="language"
-        app:pref_title="Language"
+        app:pref_title="@string/title_language"
         app:pref_icon="@drawable/ic_language_white_24dp"
         app:pref_entries="@array/entries_language"
         app:pref_entryValues="@array/values_language"
         app:pref_defaultValue="en"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        />
 
-    <preference.BooleanPreference
+    <BooleanPreference
         app:pref_key="full_screen"
-        app:pref_title="Full Screen"
+        app:pref_title="@string/title_full_screen"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        />
 
-</preference.PreferenceScreen >
+</PreferenceScreen>
 ```
 
 Next, create an `Activity` that extends `WearPreferenceActivity`, and add the preferences from the xml resource using the `addPreferencesFromResource` method. Don't forget to define the `Activity` in your `AndroidManifest.xml` file.

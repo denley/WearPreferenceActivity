@@ -19,7 +19,7 @@ public abstract class Preference extends View {
     protected final String defaultValue;
 
     public Preference(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        super(context);
 
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.Preference, 0, 0);
         try {
@@ -42,6 +42,7 @@ public abstract class Preference extends View {
     }
 
     @Override protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
         throw new IllegalStateException("Preferences should not be attached to a UI. They are for use with WearPrefrenceActivity only.");
     }
 

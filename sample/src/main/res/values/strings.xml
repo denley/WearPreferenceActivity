@@ -2,6 +2,11 @@
 
     <string name="app_name">WearPreferenceActivity Sample</string>
 
+    <string name="title_location">Location</string>
+    <string name="title_backup_data">Data Backup</string>
+    <string name="title_language">Language</string>
+    <string name="title_full_screen">Full Screen</string>
+
     <string name="location_summary_on">Show</string>
     <string name="location_summary_off">Hide</string>
 

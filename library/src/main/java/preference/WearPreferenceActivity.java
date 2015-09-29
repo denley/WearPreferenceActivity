@@ -22,6 +22,7 @@ public abstract class WearPreferenceActivity extends Activity implements Wearabl
     List<Preference> preferences = new ArrayList<>();
 
     @Override protected void onCreate(Bundle savedInstanceState) {
+        LayoutInflater.from(this).setFactory(new WearPreferenceLayoutInflaterFactory());
         super.onCreate(savedInstanceState);
         inflater = LayoutInflater.from(this);
 
