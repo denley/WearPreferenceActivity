@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
     - Preferences xml files can now be reused between mobile and wearable apps.
     - Attributes specific to wearable apps now use a `wear_` prefix
 - An array of icons can now be specified for `ListPreference` corresponding to specific icons for each list item.
+- Design changes to resemble Android Wear system settings pages
 
 ## 0.4.0 - 2015-03-25
 - Added Setter methods for `ListItemLayout`, to adjust the circle colours/radii after creation
