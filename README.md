@@ -34,18 +34,6 @@ Start by creating a preferences xml file (in the `/res/xml/` folder). You may ch
         android:defaultValue="true"
         />
 
-    <SwitchPreference
-        android:key="backup_data"
-        android:title="@string/title_backup_data"
-        android:summaryOn="@string/location_summary_on"
-        android:summaryOff="@string/location_summary_off"
-        app:wear_summaryOn="@string/location_summary_on"
-        app:wear_summaryOff="@string/location_summary_off"
-        app:wear_iconOn="@drawable/ic_cloud_queue_white_24dp"
-        app:wear_iconOff="@drawable/ic_cloud_off_white_24dp"
-        android:defaultValue="true"
-        />
-
     <ListPreference
         android:key="language"
         android:title="@string/title_language"
@@ -55,12 +43,6 @@ Start by creating a preferences xml file (in the `/res/xml/` folder). You may ch
         app:wear_entryIcons="@array/icons_language"
         android:defaultValue="en"
         />
-
-    <SwitchPreference
-        android:key="full_screen"
-        android:title="@string/title_full_screen"
-        />
-
 
 </PreferenceScreen>
 ```
