@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## 0.5.0 - 2015-09-30
 - Now parses preference resource files (in `res/xml`), rather than layout resource files (in `res/layout`).
     - Preferences xml files can now be reused between mobile and wearable apps.
     - Attributes specific to wearable apps now use a `wear_` prefix
