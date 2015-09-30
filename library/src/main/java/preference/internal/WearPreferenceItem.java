@@ -1,4 +1,4 @@
-package preference;
+package preference.internal;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,11 +12,12 @@ import me.denley.wearpreferenceactivity.R;
 
 public abstract class WearPreferenceItem implements Serializable {
 
+    /** The Android namespace. This can be used when loading android attributes from an AttributeSet */
     protected static final String NAMESPACE_ANDROID = "http://schemas.android.com/apk/res/android";
 
-    @DrawableRes protected int icon;
-    protected String title;
-    protected String summary;
+    @DrawableRes private int icon;
+    private String title;
+    private String summary;
 
     public WearPreferenceItem(@NonNull final Context context, @NonNull final AttributeSet attrs) {
         obtainAndroidAttributes(context, attrs);
@@ -59,7 +60,7 @@ public abstract class WearPreferenceItem implements Serializable {
     /**
      * Called when the preference item is clicked by the user.
      */
-    abstract void onPreferenceClick(@NonNull final Context context);
+    public abstract void onPreferenceClick(@NonNull final Context context);
 
     /**
      * Returns a resource ID for the icon to display with this preference.

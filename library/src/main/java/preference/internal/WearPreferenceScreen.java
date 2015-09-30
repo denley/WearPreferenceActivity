@@ -1,4 +1,4 @@
-package preference;
+package preference.internal;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-class WearPreferenceScreen extends WearPreferenceItem {
+public class WearPreferenceScreen extends WearPreferenceItem {
 
     private final List<WearPreferenceItem> childItems = new ArrayList<>();
 
@@ -17,11 +17,11 @@ class WearPreferenceScreen extends WearPreferenceItem {
         super(context, attrs);
     }
 
-    void addChild(WearPreferenceItem preference) {
+    public void addChild(WearPreferenceItem preference) {
         childItems.add(preference);
     }
 
-    List<WearPreferenceItem> getChildren() {
+    public List<WearPreferenceItem> getChildren() {
         return childItems;
     }
 

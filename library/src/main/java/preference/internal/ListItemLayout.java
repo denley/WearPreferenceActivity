@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package preference;
+package preference.internal;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -35,6 +35,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import me.denley.wearpreferenceactivity.R;
+import preference.WearPreference;
 
 @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
 public class ListItemLayout extends FrameLayout implements WearableListView.OnCenterProximityListener, SharedPreferences.OnSharedPreferenceChangeListener {

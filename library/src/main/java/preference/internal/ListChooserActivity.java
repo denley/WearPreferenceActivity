@@ -1,4 +1,4 @@
-package preference;
+package preference.internal;
 
 import android.content.Context;
 import android.content.Intent;

@@ -13,10 +13,17 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+import preference.internal.WearPreferenceScreen;
+
+/**
+ * Used to parse preferences xml files into an object model.
+ *
+ * This can be subclassed to provide aliases for preference types (such as for removing package names from tags).
+ */
 public class XmlPreferenceParser {
 
     @NonNull
-    public WearPreferenceScreen parse(@NonNull final Context context, @XmlRes final int prefsResId) {
+    WearPreferenceScreen parse(@NonNull final Context context, @XmlRes final int prefsResId) {
         try {
             final XmlResourceParser parser = context.getResources().getXml(prefsResId);
             return parseScreen(context, parser);

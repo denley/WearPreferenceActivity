@@ -4,25 +4,29 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.XmlRes;
 import android.support.wearable.view.WearableListView;
-import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.denley.wearpreferenceactivity.R;
+import preference.internal.ListItemLayout;
+import preference.internal.TitledWearActivity;
+import preference.internal.WearPreferenceItem;
+import preference.internal.WearPreferenceScreen;
 
-public abstract class WearPreferenceActivity extends TitledWearActivity implements WearableListView.ClickListener {
+/**
+ * An Activity that will show preferences items in a list.
+ *
+ * Users should subclass this class and call {@link #addPreferencesFromResource(int)} to populate the list of preference items.
+ */
+public abstract class WearPreferenceActivity extends TitledWearActivity {
 
-    LayoutInflater inflater;
-
-    WearableListView list;
-
-    List<WearPreferenceItem> preferences = new ArrayList<>();
+    private WearableListView list;
+    private List<WearPreferenceItem> preferences = new ArrayList<>();
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        inflater = LayoutInflater.from(this);
 
         setContentView(R.layout.preference_list);
         list = (WearableListView) findViewById(android.R.id.list);
@@ -46,23 +50,23 @@ public abstract class WearPreferenceActivity extends TitledWearActivity implemen
         addPreferencesFromPreferenceScreen(prefsRoot);
     }
 
-    void addPreferencesFromPreferenceScreen(WearPreferenceScreen preferenceScreen){
+    /** DO NOT USE - For internal use only */
+    protected void addPreferencesFromPreferenceScreen(WearPreferenceScreen preferenceScreen){
         addPreferences(preferenceScreen.getChildren());
     }
 
-    void addPreferences(List<WearPreferenceItem> newPreferences){
+    private void addPreferences(List<WearPreferenceItem> newPreferences){
         preferences = newPreferences;
         list.setAdapter(new SettingsAdapter());
-        list.setClickListener(this);
+
+        list.setClickListener(new WearableListView.ClickListener() {
+            @Override public void onClick(final WearableListView.ViewHolder viewHolder) {
+                final WearPreferenceItem clickedItem = preferences.get(viewHolder.getPosition());
+                clickedItem.onPreferenceClick(WearPreferenceActivity.this);
+            }
+            @Override public void onTopEmptyRegionClick() {}
+        });
     }
-
-    @Override public void onClick(WearableListView.ViewHolder viewHolder) {
-        final WearPreferenceItem clickedItem = preferences.get(viewHolder.getPosition());
-        clickedItem.onPreferenceClick(this);
-    }
-
-    @Override public void onTopEmptyRegionClick() {}
-
 
     private class SettingsAdapter extends WearableListView.Adapter {
         @Override public WearableListView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

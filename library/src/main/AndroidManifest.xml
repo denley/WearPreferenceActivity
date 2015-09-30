@@ -5,12 +5,12 @@
     <application>
 
         <activity
-            android:name="preference.ListChooserActivity"
+            android:name="preference.internal.ListChooserActivity"
             android:theme="@android:style/Theme.DeviceDefault"
             />
 
         <activity
-            android:name="preference.PreferenceScreenActivity"
+            android:name="preference.internal.PreferenceScreenActivity"
             android:theme="@android:style/Theme.DeviceDefault"
             />
         

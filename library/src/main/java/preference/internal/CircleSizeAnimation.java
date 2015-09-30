@@ -1,4 +1,4 @@
-package preference;
+package preference.internal;
 
 import android.support.annotation.NonNull;
 import android.support.wearable.view.CircledImageView;

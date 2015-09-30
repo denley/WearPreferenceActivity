@@ -1,4 +1,4 @@
-package preference;
+package preference.internal;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import me.denley.wearpreferenceactivity.R;
 
-abstract class TitledWearActivity extends Activity {
+public abstract class TitledWearActivity extends Activity {
 
     TextView heading;
 

@@ -1,10 +1,12 @@
-package preference;
+package preference.internal;
 
 import android.os.Bundle;
 
+import preference.WearPreferenceActivity;
+
 public class PreferenceScreenActivity extends WearPreferenceActivity {
 
-    static final String EXTRA_SCREEN = "preference_screen";
+    public static final String EXTRA_SCREEN = "preference_screen";
 
     @Override protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -9,12 +9,20 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 
 import me.denley.wearpreferenceactivity.R;
+import preference.internal.ListChooserActivity;
 
+/**
+ * A simple list preference type.
+ *
+ * This is the default parsed preference type for ListPreference.
+ *
+ * Both the summary and icon values can be specified differently for each item in the set of entries
+ */
 public class WearListPreference extends WearPreference {
 
-    protected CharSequence[] entries, entryValues;
-    protected int[] icons;
-    protected boolean useEntryAsSummary = true;
+    private CharSequence[] entries, entryValues;
+    private int[] icons;
+    private boolean useEntryAsSummary = true;
 
     public WearListPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -57,7 +65,7 @@ public class WearListPreference extends WearPreference {
 
     private String getCurrentValue(@NonNull final Context context){
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return preferences.getString(key, defaultValue);
+        return preferences.getString(getKey(), getDefaultValue());
     }
 
     private int getEntryPositionFor(CharSequence value){
@@ -100,9 +108,9 @@ public class WearListPreference extends WearPreference {
     @Override public void onPreferenceClick(@NonNull final Context context) {
         final Intent chooseEntryIntent = ListChooserActivity.createIntent(
                 context,
-                key,
-                title,
-                icon,
+                getKey(),
+                super.getTitle(context).toString(),
+                super.getIcon(context),
                 entries,
                 entryValues,
                 icons,

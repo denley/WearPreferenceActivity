@@ -1,4 +1,4 @@
-package preference;
+package preference.internal;
 
 import android.annotation.TargetApi;
 import android.content.Context;
