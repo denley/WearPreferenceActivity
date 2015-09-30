@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 
 import me.denley.wearpreferenceactivity.R;
@@ -54,7 +55,7 @@ public class WearListPreference extends WearPreference {
         }
     }
 
-    private String getCurrentValue(){
+    private String getCurrentValue(@NonNull final Context context){
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(key, defaultValue);
     }
@@ -69,8 +70,8 @@ public class WearListPreference extends WearPreference {
         return -1;
     }
 
-    private CharSequence getCurrentEntry() {
-        final String currentValue = getCurrentValue();
+    private CharSequence getCurrentEntry(@NonNull final Context context) {
+        final String currentValue = getCurrentValue(context);
         final int currentValuePos = getEntryPositionFor(currentValue);
 
         if(currentValuePos==-1){
@@ -80,23 +81,23 @@ public class WearListPreference extends WearPreference {
         }
     }
 
-    @Override public CharSequence getSummary() {
+    @Override public CharSequence getSummary(@NonNull final Context context) {
         if(useEntryAsSummary){
-            return getCurrentEntry();
+            return getCurrentEntry(context);
         } else {
-            return super.getSummary();
+            return super.getSummary(context);
         }
     }
 
-    @Override public int getIcon() {
+    @Override public int getIcon(@NonNull final Context context) {
         if(icons != null) {
-            return icons[getEntryPositionFor(getCurrentValue())];
+            return icons[getEntryPositionFor(getCurrentValue(context))];
         } else {
-            return super.getIcon();
+            return super.getIcon(context);
         }
     }
 
-    @Override public void onPreferenceClick() {
+    @Override public void onPreferenceClick(@NonNull final Context context) {
         final Intent chooseEntryIntent = ListChooserActivity.createIntent(
                 context,
                 key,
@@ -105,7 +106,7 @@ public class WearListPreference extends WearPreference {
                 entries,
                 entryValues,
                 icons,
-                getEntryPositionFor(getCurrentValue())
+                getEntryPositionFor(getCurrentValue(context))
         );
         context.startActivity(chooseEntryIntent);
     }

@@ -19,14 +19,14 @@ public class XmlPreferenceParser {
     public WearPreferenceScreen parse(@NonNull final Context context, @XmlRes final int prefsResId) {
         try {
             final XmlResourceParser parser = context.getResources().getXml(prefsResId);
-            return parse(context, parser);
+            return parseScreen(context, parser);
         } catch (XmlPullParserException | IOException e) {
             throw new RuntimeException("Error parsing preferences file", e);
         }
     }
 
     @NonNull
-    private WearPreferenceScreen parse(@NonNull final Context context, @NonNull final XmlResourceParser parser)
+    private WearPreferenceScreen parseScreen(@NonNull final Context context, @NonNull final XmlResourceParser parser)
             throws XmlPullParserException, IOException {
 
         while(parser.getName() == null) {
@@ -48,9 +48,23 @@ public class XmlPreferenceParser {
         if(parser.getEventType() == XmlResourceParser.START_TAG) {
             parser.next();
             while(parser.getEventType() != XmlResourceParser.END_TAG) {
-                parsePreference(context, parser, screen);
+                parseItem(context, parser, screen);
                 parser.next();
             }
+        }
+    }
+
+    private void parseItem(final Context context, final XmlResourceParser parser, final WearPreferenceScreen screen)
+            throws XmlPullParserException, IOException {
+
+        switch(parser.getName()) {
+            case "PreferenceScreen":
+                final WearPreferenceScreen childScreen = parseScreen(context, parser);
+                screen.addChild(childScreen);
+                break;
+            default:
+                parsePreference(context, parser, screen);
+                break;
         }
     }
 
@@ -65,7 +79,7 @@ public class XmlPreferenceParser {
             preference = parsePreferenceInternal(context, name, parser);
         }
 
-        screen.addPreference(preference);
+        screen.addChild(preference);
 
         while(parser.getEventType() != XmlResourceParser.END_TAG) {
             parser.next();

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 
 import me.denley.wearpreferenceactivity.R;
@@ -19,8 +20,8 @@ public class WearTwoStatePreference extends WearPreference {
     public WearTwoStatePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        summaryOn = loadAndroidStringAttr(attrs, "summaryOn");
-        summaryOff = loadAndroidStringAttr(attrs, "summaryOff");
+        summaryOn = loadAndroidStringAttr(context, attrs, "summaryOn");
+        summaryOff = loadAndroidStringAttr(context, attrs, "summaryOff");
 
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.TwoStatePreference, 0, 0);
 
@@ -48,35 +49,35 @@ public class WearTwoStatePreference extends WearPreference {
         }
     }
 
-    @Override public int getIcon() {
+    @Override public int getIcon(@NonNull final Context context) {
         // Delegate to super if no specific icons are set
         if(iconOn==0 && iconOff==0) {
-            return super.getIcon();
+            return super.getIcon(context);
         }
 
-        if(getPreferenceValue()){
+        if(getPreferenceValue(context)){
             return iconOn;
         } else {
             return iconOff;
         }
     }
 
-    @Override public CharSequence getSummary() {
-        if(getPreferenceValue()){
+    @Override public CharSequence getSummary(@NonNull final Context context) {
+        if(getPreferenceValue(context)){
             return summaryOn;
         } else {
             return summaryOff;
         }
     }
 
-    @Override public void onPreferenceClick() {
+    @Override public void onPreferenceClick(@NonNull final Context context) {
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         final boolean currentState = preferences.getBoolean(key, defaultValue);
         preferences.edit().putBoolean(key, !currentState).apply();
     }
 
-    private boolean getPreferenceValue(){
+    private boolean getPreferenceValue(@NonNull final Context context){
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getBoolean(key, defaultValue);
     }

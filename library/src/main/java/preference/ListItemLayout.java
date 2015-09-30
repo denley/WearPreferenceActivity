@@ -49,7 +49,7 @@ public class ListItemLayout extends FrameLayout implements WearableListView.OnCe
 
     private SharedPreferences preferences;
 
-    @Nullable private WearPreference bindedPreference = null;
+    @Nullable private WearPreferenceItem bindedPreference = null;
 
     @Nullable private CircledImageView icon;
     @Nullable private TextView title, summary;
@@ -153,7 +153,7 @@ public class ListItemLayout extends FrameLayout implements WearableListView.OnCe
         this.circleColorNonCenter = circleColorNonCenter;
     }
 
-    public void bindPreference(@NonNull final WearPreference preference){
+    public void bindPreference(@NonNull final WearPreferenceItem preference){
         bindedPreference = preference;
         bindPreferenceView(preference);
         preferences.registerOnSharedPreferenceChangeListener(this);
@@ -164,8 +164,9 @@ public class ListItemLayout extends FrameLayout implements WearableListView.OnCe
         bindedPreference = null;
     }
 
-    private void bindPreferenceView(@NonNull final WearPreference preference){
-        bindView(preference.getIcon(), preference.getTitle(), preference.getSummary());
+    private void bindPreferenceView(@NonNull final WearPreferenceItem preference){
+        final Context context = getContext();
+        bindView(preference.getIcon(context), preference.getTitle(context), preference.getSummary(context));
     }
 
     public void bindView(@DrawableRes final int iconId,
@@ -188,7 +189,7 @@ public class ListItemLayout extends FrameLayout implements WearableListView.OnCe
     }
 
     @Override public void onSharedPreferenceChanged(@NonNull SharedPreferences sharedPreferences, @NonNull String key) {
-        if(bindedPreference!=null && key.equals(bindedPreference.getKey())){
+        if(bindedPreference instanceof WearPreference && key.equals(((WearPreference) bindedPreference).getKey())){
             bindPreferenceView(bindedPreference);
         }
     }

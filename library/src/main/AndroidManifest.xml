@@ -3,9 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
-        
+
         <activity
             android:name="preference.ListChooserActivity"
+            android:theme="@android:style/Theme.DeviceDefault"
+            />
+
+        <activity
+            android:name="preference.PreferenceScreenActivity"
             android:theme="@android:style/Theme.DeviceDefault"
             />
         

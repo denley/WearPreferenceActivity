@@ -18,7 +18,7 @@ public abstract class WearPreferenceActivity extends TitledWearActivity implemen
 
     WearableListView list;
 
-    List<WearPreference> preferences = new ArrayList<>();
+    List<WearPreferenceItem> preferences = new ArrayList<>();
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,19 +46,19 @@ public abstract class WearPreferenceActivity extends TitledWearActivity implemen
         addPreferencesFromPreferenceScreen(prefsRoot);
     }
 
-    private void addPreferencesFromPreferenceScreen(WearPreferenceScreen preferenceScreen){
-        addPreferences(preferenceScreen.getPreferences());
+    void addPreferencesFromPreferenceScreen(WearPreferenceScreen preferenceScreen){
+        addPreferences(preferenceScreen.getChildren());
     }
 
-    private void addPreferences(List<WearPreference> newPreferences){
+    void addPreferences(List<WearPreferenceItem> newPreferences){
         preferences = newPreferences;
         list.setAdapter(new SettingsAdapter());
         list.setClickListener(this);
     }
 
     @Override public void onClick(WearableListView.ViewHolder viewHolder) {
-        final WearPreference clickedPreference = preferences.get(viewHolder.getPosition());
-        clickedPreference.onPreferenceClick();
+        final WearPreferenceItem clickedItem = preferences.get(viewHolder.getPosition());
+        clickedItem.onPreferenceClick(this);
     }
 
     @Override public void onTopEmptyRegionClick() {}
@@ -71,7 +71,7 @@ public abstract class WearPreferenceActivity extends TitledWearActivity implemen
         }
 
         @Override public void onBindViewHolder(WearableListView.ViewHolder holder, int position) {
-            final WearPreference preference = preferences.get(position);
+            final WearPreferenceItem preference = preferences.get(position);
             final ListItemLayout itemView = (ListItemLayout)holder.itemView;
             itemView.bindPreference(preference);
             itemView.onNonCenterPosition(false);

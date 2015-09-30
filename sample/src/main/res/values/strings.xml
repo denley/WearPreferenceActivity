@@ -8,6 +8,8 @@
     <string name="title_backup_data">Data Backup</string>
     <string name="title_language">Language</string>
     <string name="title_full_screen">Full Screen</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_vibration">Vibration</string>
 
     <string name="summary_show">Show</string>
     <string name="summary_hide">Hide</string>

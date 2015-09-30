@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Now parses preference resource files (in `res/xml`), rather than layout resource files (in `res/layout`).
     - Preferences xml files can now be reused between mobile and wearable apps.
     - Attributes specific to wearable apps now use a `wear_` prefix
+- Added support for nested `PreferenceScreen` tags in preferences xml files
 - An array of icons can now be specified for `ListPreference` corresponding to specific icons for each list item.
 - Design changes to resemble Android Wear system settings pages
 
