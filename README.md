@@ -9,7 +9,7 @@ Build Configuration
 --------
 Add the following line to the gradle dependencies for your wearable app's module.
 ```groovy
-compile 'me.denley.wearpreferenceactivity:wearpreferenceactivity:0.4.0'
+compile 'me.denley.wearpreferenceactivity:wearpreferenceactivity:0.5.0'
 ```
 
 Basic Use
